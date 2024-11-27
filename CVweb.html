@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mert Sürücü - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <div class="language-selector dropdown">
+                <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                    <span class="lang-icon">
+                        <i class="fas fa-globe"></i>
+                        <span class="current-lang">TR</span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item active" href="#" data-lang="tr">Türkçe</a></li>
+                    <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+                </ul>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Hakkımda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="experience.html">Deneyim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="education.html">Eğitim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="skills.html">Yetenekler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="animate-text">Kişisel Web Siteme Hoş Geldiniz</h1>
+            <p class="animate-text">Kağan Mert SÜRÜCÜ</p>
+            <p class="animate-text">Bilgisayar Mühendisi</p>
+            <div class="social-links">
+                <a href="mailto:kamertsurucu@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="http://www.linkedin.com/in/mertsurucu1" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="http://github.com/mertsurucu1" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://kit.fontawesome.com/your-code.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').classList.add('scrolled');
+            } else {
+                document.querySelector('.navbar').classList.remove('scrolled');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Body'ye home class'ı ekle
+            document.body.classList.add('home');
+            
+            // Dil değiştirme işlemleri
+            const languageItems = document.querySelectorAll('.language-selector .dropdown-item');
+            const currentLang = document.querySelector('.current-lang');
+            
+            languageItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Aktif dil işaretlemesi
+                    languageItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Dil değiştirme işlemleri
+                    const lang = this.getAttribute('data-lang');
+                    currentLang.textContent = lang.toUpperCase();
+                    
+                    // Sayfa linklerini güncelle
+                    updatePageLinks(lang);
+                    
+                    // İçeriği güncelle
+                    changeLang(lang);
+                });
+            });
+        });
+
+        // Sayfa linklerini dile göre güncelle
+        function updatePageLinks(lang) {
+            const pageExtensions = {
+                tr: '.html',
+                en: '_en.html'
+            };
+            
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.endsWith('.html')) {
+                    const baseName = href.replace('.html', '');
+                    link.href = baseName + pageExtensions[lang];
+                }
+            });
+        }
+
+        // Dil değiştirme fonksiyonu güncellendi
+        function changeLang(lang) {
+            const translations = {
+                tr: {
+                    about: 'Hakkımda',
+                    experience: 'Deneyim',
+                    education: 'Eğitim',
+                    skills: 'Yetenekler',
+                    contact: 'İletişim',
+                    welcome: 'Kişisel Web Siteme Hoş Geldiniz',
+                    title: 'Kağan Mert SÜRÜCÜ',
+                    profession: 'Bilgisayar Mühendisi'
+                },
+                en: {
+                    about: 'About',
+                    experience: 'Experience',
+                    education: 'Education',
+                    skills: 'Skills',
+                    contact: 'Contact',
+                    welcome: 'Welcome to My Personal Website',
+                    title: 'Kağan Mert SÜRÜCÜ',
+                    profession: 'Computer Engineer'
+                }
+            };
+
+            // Menü metinlerini güncelle
+            document.querySelectorAll('.nav-link').forEach(item => {
+                const key = item.getAttribute('href')?.split('.')[0];
+                if (key && translations[lang][key]) {
+                    item.textContent = translations[lang][key];
+                }
+            });
+
+            // Banner içeriğini güncelle
+            document.querySelector('.hero-content h1').textContent = translations[lang].welcome;
+            document.querySelector('.hero-content p:first-of-type').textContent = translations[lang].title;
+            document.querySelector('.hero-content p:last-of-type').textContent = translations[lang].profession;
+        }
+    </script>
+</body>
+</html>

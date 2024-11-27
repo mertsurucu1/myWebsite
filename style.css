@@ -1,0 +1,302 @@
+/* Ana Stiller */
+.hero-section {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Navbar Stilleri */
+.navbar {
+    background-color: transparent !important;
+    transition: all 0.4s ease;
+    padding: 20px 0;
+}
+
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 500;
+    margin: 0 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: hwb(127 2% 61%);
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: hwb(127 2% 61%)  !important;
+    transform: translateY(-2px);
+}
+
+/* Hero İçerik Stilleri */
+.hero-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards 0.3s;
+}
+
+/* Sosyal Medya Linkleri */
+.social-links {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards 0.6s;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 15px;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: hwb(127 2% 61%) ;
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* Animasyonlar */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Arka Plan Parçacıkları */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 15s infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    25% {
+        transform: translateY(-20px) translateX(20px);
+    }
+    50% {
+        transform: translateY(-40px) translateX(-20px);
+    }
+    75% {
+        transform: translateY(-20px) translateX(20px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    .social-links a {
+        margin: 0 10px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Scroll engelleme */
+body.home {
+    overflow: hidden;
+}
+
+/* Dil seçici stilleri güncellendi */
+.language-selector {
+    position: relative;
+    cursor: pointer;
+}
+
+.language-selector .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white !important;
+    padding: 8px 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Ok işareti yerine yeni animasyon */
+.language-selector .dropdown-toggle::after {
+    display: none;
+}
+
+.language-selector .lang-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.language-selector .lang-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: hwb(127 2% 61%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.language-selector:hover .lang-icon::after {
+    transform: scaleX(1);
+}
+
+/* Dil seçici hover efekti */
+.language-selector:hover .dropdown-toggle {
+    color: hwb(127 2% 61%) !important;
+}
+
+/* Globe ikonu animasyonu */
+.language-selector .fa-globe {
+    transition: transform 0.3s ease;
+}
+
+.language-selector:hover .fa-globe {
+    transform: rotate(180deg);
+}
+
+/* Mobil görünüm için ek stiller */
+@media (max-width: 991px) {
+    .language-selector {
+        margin-right: 50px; /* Hamburger menü ile çakışmaması için */
+    }
+}
+
+/* Hamburger menü stilleri */
+.navbar-toggler {
+    border: none;
+    padding: 0;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    transition: .5s ease-in-out;
+    background: transparent !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    background-image: none;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: white;
+    transition: .25s ease-in-out;
+}
+
+.navbar-toggler .navbar-toggler-icon::before,
+.navbar-toggler .navbar-toggler-icon::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: white;
+    transition: .25s ease-in-out;
+}
+
+.navbar-toggler .navbar-toggler-icon::before {
+    top: -8px;
+}
+
+.navbar-toggler .navbar-toggler-icon::after {
+    bottom: -8px;
+}
+
+/* X işareti dönüşümü */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    background: transparent;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+/* Mobil menü stilleri */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .nav-link {
+        color: #000 !important;
+        text-align: center;
+        padding: 15px !important;
+    }
+
+    .nav-link:hover {
+        color: hwb(127 2% 61%) !important;
+        background: rgba(23, 162, 184, 0.1);
+    }
+}
