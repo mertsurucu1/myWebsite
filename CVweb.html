@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mert Sürücü - Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <div class="language-selector dropdown">
-                <a class="dropdown-toggle" data-bs-toggle="dropdown">
+            <div class="language-selector">
+                <a class="lang-switch" href="#">
                     <span class="lang-icon">
                         <i class="fas fa-globe"></i>
                         <span class="current-lang">TR</span>
                     </span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item active" href="#" data-lang="tr">Türkçe</a></li>
-                    <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
-                </ul>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -31,13 +29,7 @@
                         <a class="nav-link" href="about.html">Hakkımda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="experience.html">Deneyim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="education.html">Eğitim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="skills.html">Yetenekler</a>
+                        <a class="nav-link" href="projects.html">Projeler</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">İletişim</a>
@@ -48,19 +40,31 @@
     </nav>
 
     <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="animate-text">Kişisel Web Siteme Hoş Geldiniz</h1>
-            <p class="animate-text">Kağan Mert SÜRÜCÜ</p>
-            <p class="animate-text">Bilgisayar Mühendisi</p>
-            <div class="social-links">
-                <a href="mailto:kamertsurucu@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="http://www.linkedin.com/in/mertsurucu1" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="http://github.com/mertsurucu1" target="_blank"><i class="fab fa-github"></i></a>
+        <div class="container h-100">
+            <div class="hero-content">
+                <div class="center-content">
+                    <h1 class="animate-text main-title fade-element">Kişisel Web Siteme Hoş Geldiniz</h1>
+                    <p class="animate-text name fade-element">Kağan Mert SÜRÜCÜ</p>
+                    <p class="animate-text profession fade-element">Bilgisayar Mühendisi | Yazılım Geliştirici</p>
+                    <div class="social-links animate-text">
+                        <a href="https://linkedin.com/in/mertsurucu1" target="_blank" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/mertsurucu1" target="_blank" class="social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://twitter.com/mertsrc007" target="_blank" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://medium.com/@kamertsurucu" target="_blank" class="social-icon">
+                            <i class="fab fa-medium"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <script src="https://kit.fontawesome.com/your-code.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         window.addEventListener('scroll', function() {
@@ -72,88 +76,98 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Body'ye home class'ı ekle
             document.body.classList.add('home');
             
-            // Dil değiştirme işlemleri
-            const languageItems = document.querySelectorAll('.language-selector .dropdown-item');
+            // Dil değiştirme düğmesi
+            const langSwitch = document.querySelector('.lang-switch');
             const currentLang = document.querySelector('.current-lang');
+            let currentLanguage = 'tr';
             
-            languageItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
+            langSwitch.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Animasyon classını ekle
+                currentLang.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    // Dil değiştirme
+                    currentLanguage = currentLanguage === 'tr' ? 'en' : 'tr';
+                    currentLang.textContent = currentLanguage.toUpperCase();
                     
-                    // Aktif dil işaretlemesi
-                    languageItems.forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Dil değiştirme işlemleri
-                    const lang = this.getAttribute('data-lang');
-                    currentLang.textContent = lang.toUpperCase();
-                    
-                    // Sayfa linklerini güncelle
-                    updatePageLinks(lang);
+                    // Animasyon classlarını değiştir
+                    currentLang.classList.remove('fade-out');
+                    currentLang.classList.add('fade-in');
                     
                     // İçeriği güncelle
-                    changeLang(lang);
-                });
+                    changeLang(currentLanguage);
+                    
+                    // Fade-in classını temizle
+                    setTimeout(() => {
+                        currentLang.classList.remove('fade-in');
+                    }, 300);
+                    
+                }, 300);
             });
         });
 
-        // Sayfa linklerini dile göre güncelle
-        function updatePageLinks(lang) {
-            const pageExtensions = {
-                tr: '.html',
-                en: '_en.html'
-            };
-            
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                const href = link.getAttribute('href');
-                if (href && href.endsWith('.html')) {
-                    const baseName = href.replace('.html', '');
-                    link.href = baseName + pageExtensions[lang];
+        function smoothTextChange(element, finalText) {
+            let opacity = 1;
+            const fadeOut = setInterval(() => {
+                opacity -= 0.1;
+                element.style.opacity = opacity;
+                
+                if (opacity <= 0) {
+                    clearInterval(fadeOut);
+                    
+                    // Metni değiştir ve fade in başlat
+                    element.textContent = finalText;
+                    let newOpacity = 0;
+                    
+                    const fadeIn = setInterval(() => {
+                        newOpacity += 0.1;
+                        element.style.opacity = newOpacity;
+                        
+                        if (newOpacity >= 1) {
+                            clearInterval(fadeIn);
+                        }
+                    }, 50);
                 }
-            });
+            }, 50);
         }
 
-        // Dil değiştirme fonksiyonu güncellendi
         function changeLang(lang) {
             const translations = {
                 tr: {
                     about: 'Hakkımda',
-                    experience: 'Deneyim',
-                    education: 'Eğitim',
-                    skills: 'Yetenekler',
+                    projects: 'Projeler',
                     contact: 'İletişim',
                     welcome: 'Kişisel Web Siteme Hoş Geldiniz',
                     title: 'Kağan Mert SÜRÜCÜ',
-                    profession: 'Bilgisayar Mühendisi'
+                    profession: 'Bilgisayar Mühendisi | Yazılım Geliştirici',
                 },
                 en: {
                     about: 'About',
-                    experience: 'Experience',
-                    education: 'Education',
-                    skills: 'Skills',
+                    projects: 'Projects',
                     contact: 'Contact',
                     welcome: 'Welcome to My Personal Website',
                     title: 'Kağan Mert SÜRÜCÜ',
-                    profession: 'Computer Engineer'
+                    profession: 'Computer Engineer | Software Developer',
                 }
             };
 
+            // Ana içeriği güncelle
+            smoothTextChange(document.querySelector('.hero-content h1'), translations[lang].welcome);
+            setTimeout(() => {
+                smoothTextChange(document.querySelector('.hero-content .profession'), translations[lang].profession);
+            }, 200);
+
             // Menü metinlerini güncelle
             document.querySelectorAll('.nav-link').forEach(item => {
-                const key = item.getAttribute('href')?.split('.')[0];
-                if (key && translations[lang][key]) {
+                const key = item.getAttribute('href').split('.')[0];
+                if (translations[lang][key]) {
                     item.textContent = translations[lang][key];
                 }
             });
-
-            // Banner içeriğini güncelle
-            document.querySelector('.hero-content h1').textContent = translations[lang].welcome;
-            document.querySelector('.hero-content p:first-of-type').textContent = translations[lang].title;
-            document.querySelector('.hero-content p:last-of-type').textContent = translations[lang].profession;
         }
     </script>
 </body>

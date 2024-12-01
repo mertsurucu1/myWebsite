@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hakkımda - Kağan Mert SÜRÜCÜ</title>
+    <meta name="description" content="Kağan Mert SÜRÜCÜ ile iletişime geçin. Sorularınız, iş birliği teklifleriniz ve projeleriniz için bana ulaşın.">
+    <title>İletişim - Kağan Mert SÜRÜCÜ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <link href="pages.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar buraya gelecek -->
+    <!-- Loading Animasyonu -->
+    <div id="loading" class="loading-screen">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Yükleniyor...</span>
+        </div>
+    </div>
     
     <!-- Yarım Banner Section -->
     <section class="page-banner">
         <div class="banner-overlay">
             <div class="container">
-                <h1 class="banner-title">Hakkımda</h1>
+                <h1 class="banner-title">İletişim</h1>
             </div>
         </div>
     </section>
@@ -23,15 +30,151 @@
     <!-- İçerik Section -->
     <section class="content-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="content-box about-content">
-                        <h2>Merhaba, Ben Kağan Mert SÜRÜCÜ</h2>
-                        <p>Bilgisayar mühendisliği alanında...</p>
+            <div class="row justify-content-center">
+                <!-- İletişim Bilgileri -->
+                <div class="col-md-4 mb-4">
+                    <div class="content-box contact-info bg-light p-4 rounded-3 shadow-sm">
+                        <h3 class="mb-4">İletişim Bilgileri</h3>
+                        
+                        <div class="contact-item mb-4">
+                            <i class="bi bi-envelope-fill text-primary me-2"></i>
+                            <a href="mailto:your-email@example.com" class="text-decoration-none">
+                                your-email@example.com
+                            </a>
+                        </div>
+
+                        <div class="contact-item mb-4">
+                            <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                            <span>İstanbul, Türkiye</span>
+                        </div>
+
+                        <div class="social-links mt-4">
+                            <h4 class="mb-3">Sosyal Medya</h4>
+                            <a href="#" class="btn btn-outline-primary me-2">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-dark me-2">
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-info">
+                                <i class="bi bi-twitter-x"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- İletişim Formu -->
+                <div class="col-md-8">
+                    <div class="content-box contact-form bg-white p-4 rounded-3 shadow-sm">
+                        <h3 class="mb-4">Mesaj Gönder</h3>
+                        <form id="contactForm" onsubmit="return handleSubmit(event)">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Adınız Soyadınız</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">E-posta Adresiniz</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Konu</label>
+                                <input type="text" class="form-control" id="subject" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Mesajınız</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary btn-lg px-4">
+                                    <i class="bi bi-send me-2"></i>Gönder
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container px-4">
+            <div class="row justify-content-center">
+
+                <div class="col-md-5 mb-4 pe-5">
+                    <h5 class="mb-3 fw-light text-success border-bottom pb-2">Hızlı Menü</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="projects.html" class="text-light text-decoration-none nav-link">Projeler</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="about.html" class="text-light text-decoration-none nav-link">Hakkımda</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="contact.html" class="text-light text-decoration-none nav-link">İletişim</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-5 mb-4 ps-5">
+                    <h5 class="mb-3 fw-light text-success border-bottom pb-2">Bültene Abone Ol</h5>
+                    <p class="text-light-emphasis mb-3">
+                        Yeni makalelerimden ve güncellemelerden haberdar olmak için abone olun.
+                    </p>
+                    <form class="mb-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="E-posta adresiniz" required>
+                            <button class="btn btn-success" type="submit">Abone Ol</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="row">
+                <div class="col-12">
+                    <hr class="my-2 opacity-70">
+                    <p class="text-center mb-0 text-light-emphasis">
+                        &copy; 2024 Kağan Mert SÜRÜCÜ. Tüm hakları saklıdır.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            document.getElementById('loading').style.display = 'none';
+        });
+
+        // Form Gönderimi
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Form verilerini al
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            // Burada form verilerini işleyebilir veya API'ye gönderebilirsiniz
+            console.log('Form verileri:', formData);
+
+            // Başarılı gönderim mesajı
+            alert('Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapılacaktır.');
+            
+            // Formu temizle
+            event.target.reset();
+            
+            return false;
+        }
+    </script>
 </body>
 </html>
